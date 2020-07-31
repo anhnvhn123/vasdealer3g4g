@@ -1,0 +1,102 @@
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none !important;
+}
+.td-social-facebook {
+    background-color: #516eab;
+}
+.td-post-sharing a {
+    display: inline-block;
+    vertical-align: middle;
+}
+.td-social-facebook {
+    background-color: #516eab;
+}
+.td-social-sharing-buttons {
+    font-size: 11px;
+    color: #fff;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    padding: 10px 13px 8px 13px;
+    margin-right: 10px;
+    height: 40px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.td-social-facebook .td-social-but-text {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+.td-social-but-text {
+    display: inline-block;
+    position: relative;
+    top: -1px;
+    line-height: 16px;
+    padding-left: 10px;
+    margin-left: 12px;
+}
+.table{
+    margin-bottom: 0px !important;
+}
+
+@media(max-width: 768px){
+    .button-footer{
+        position: fixed;
+        bottom: 9px;
+        left: 0px;
+        width: 100%;
+    }
+    .button-footer a img{
+        display: inline-block;
+        height: 48px;
+        width: auto;
+        padding-right: 70px;
+        opacity: 1;
+    }
+    .header .top-bar .menu-line {
+        text-align: center;
+        padding: 7px 0;
+        float: right;
+        width: auto;
+    }
+    .header .top-bar .carrers-icon{
+        width: 100% !important;
+        margin-right: -10px;
+    }
+    .header .top-bar .carrers-icon .icon{
+        width: 105px;
+        height: 30px;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 3px;
+        text-align: center;
+        padding: 0px !important;
+        background-size: auto;
+        box-shadow: none;
+    }
+    #hover{
+        position: absolute;
+        top: -46px;
+        left: -19px;
+    }
+    .button-footer{
+        display: none;
+    }
+}
+@media(min-width: 768px){
+    .button-footer{
+        position: fixed;
+        bottom: 50px;
+        right: 0px;
+        width: 100%;
+    }
+    .button-footer a img{
+        display: inline-block;
+        height: 40px;
+        width: auto;
+        padding-left: 10px;
+    }
+}

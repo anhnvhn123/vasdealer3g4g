@@ -1,0 +1,104 @@
+.lists.slider {
+    width: 100%;
+    /*margin: 0 -36px;*/
+    position: relative;
+    z-index: 9;
+    margin-bottom: 20px;
+}
+.lists.slider .owl-carousel {
+    padding: 0 18px;
+}
+.owl-carousel .owl-stage-outer{
+    padding: 0px 0px 40px 0px;
+    clear: both;
+}
+.lists.slider .items{
+    box-shadow: 0px 10px 20px rgba(39, 52, 125, 0.12);
+    /*margin: 0 18px;*/
+    border-radius: 10px;
+    padding-bottom: 20px;
+}
+.box-data .items{
+    border-radius: 10px;
+}
+.box-data-cacgoi .inner-item h2.h2-minmax{
+    background: linear-gradient(160.54deg, #29E2E6 0%, #009B94 98.92%);
+    position: relative;
+}
+.box-data-cacgoi .inner-item h2.h2-minmax-mb {
+    background: linear-gradient(160.54deg, #00579c 0%, #5985d8 98.92%);
+}
+.box-data-cacgoi .inner-item h2.h2-minmax-vnp {
+    background: linear-gradient(160.54deg, #017cd0 0%, #9457c1 98.92%);
+}
+.inner-item h2 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+}
+.box-data h2{
+    border-radius: 10px 10px 0 0;
+}
+.box-data.box-data-cacgoi h2 {
+    padding: 12px 10px 9px;
+}
+.inner-item h2 {
+    position: relative;
+    z-index: 3;
+    display: block;
+}
+.box-data-cacgoi h2 span{
+    display: block;
+    font-size: 18px;
+    font-weight: 300;
+}
+.int{
+    padding: 20px;
+    text-align: center;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #14AFB4;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.price-mb{
+    color: #2e6fbb;
+}
+.price-vnp{
+    color: #2274cd;
+}
+.box-data .view{
+    margin: 15px 0 5px 0;
+}
+.inner-item .int .price{
+    white-space: nowrap;
+    /*overflow: hidden;*/
+    text-overflow: ellipsis;
+    width: 100%;
+}
+.owl-prev{
+    font-size: 25px;
+    position: absolute;
+    top: 40%;
+    left: 0px;
+    color: cornflowerblue;
+}
+.owl-next{
+    font-size: 25px;
+    position: absolute;
+    top: 40%;
+    right: 0px;
+    color: cornflowerblue;
+}
+.recommend-title{
+    padding-left: 10px;
+    font-weight: bold;
+}

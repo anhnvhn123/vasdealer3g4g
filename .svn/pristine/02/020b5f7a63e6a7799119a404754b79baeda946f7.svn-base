@@ -1,0 +1,73 @@
+
+<?php
+if(get_field('nha_mang') != ''){
+    $provider = get_field('nha_mang');
+}else{
+    $provider = 'vinaphone';    
+}
+
+$ghi_chu = get_field('ghi_chu');
+?>
+<?php get_header($provider); ?>
+
+    <section id="body" class="body">
+
+        <div class="container">
+            <div id="1" class="entry-content">
+                <h1 class="entry-title"><?php echo get_the_title(); ?></h1>
+                <p><?php echo (($ghi_chu != '')? ('<b>Ghi chú :</b>' . $ghi_chu):''); ?></p>
+
+                <?php $datas = get_field('goi-cuoc');?>
+                <div class="row" style="margin-left: -0px;" >
+                <?php foreach ($datas as $key => $value) :?>
+                    <div class="item ">
+                        <h3><?php echo get_field('ma_goi_cuoc', $value['goi-cuoc']); ?></h3>
+                        <table style="width: 100%;" class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <td style=" width: 30%;">Dung lượng</td>
+                                <td><?php echo get_field('toc_do', $value['goi-cuoc']); ?></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 30%;">Giá cước</td>
+                                <td><?php echo product_price(get_field('gia_cuoc', $value['goi-cuoc'])); ?>đ / <?php echo get_field('chu_ky', $value['goi-cuoc']); ?></td>
+                            </tr>
+							<?php if($provider != 'viettel') : ?>
+                            <tr>
+                                <td style="width: 30%;">Cú pháp</td>
+                                <td><strong><?php echo get_field('cu_phap', $value['goi-cuoc']); ?></strong>&nbsp;gửi&nbsp;<strong><?php echo get_field('dau_so', $value['goi-cuoc']); ?></strong></td>
+                            </tr>
+							<?php endif; ?>
+                            <tr>
+                                <td>Cước phát sinh</td>
+                                <td><?php echo get_field('cuoc_phat_sinh', $value['goi-cuoc']); ?></td>
+                            </tr>
+                            <?php if(get_field('mo_ta', $value['goi-cuoc']) != '') : ?>
+                            <tr >
+                                <td>Chú thích</td>
+                                <td>
+                                    <?php echo get_field('mo_ta', $value['goi-cuoc']); ?>
+                                </td>
+                            </tr>
+                            <?php endif; ?>
+                            <tr>
+                                <td colspan="2" style="text-align: center;">
+                                    <?php render_btn_dangky(get_field('cu_phap', $value['goi-cuoc']), get_field('dau_so', $value['goi-cuoc']), get_field('register_type', $value['goi-cuoc']), product_price(get_field('gia_cuoc', $value['goi-cuoc'])), get_field('chu_ky', $value['goi-cuoc']), get_field('toc_do', $value['goi-cuoc'])); ?>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="clear-fix clear"></div>
+            <div id="2" class="entry-content">
+                <?php the_content(); ?>
+                <div class="fb-comments" data-href="<?php echo get_permalink(); ?>" data-numposts="5" data-width="100%" data-order-by="reverse_time" ></div>
+            </div>
+            <div class="clear-fix"></div>
+            <?php include('box-tintuc.php'); ?>
+        </div>
+    </section>
+<?php get_footer($provider); ?>

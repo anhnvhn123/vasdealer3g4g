@@ -1,0 +1,251 @@
+<?php
+$id = get_the_ID();
+$_SESSION['catId'] = 1;
+$data = get_the_terms( $id,'nhom_goi_cuoc' );
+$classTelco = 'h2-minmax';
+$classPrice = '';
+if(checkTelco($data, "Viettel")){
+    get_header('viettel');
+    $_SESSION['catId'] = 15;
+}
+if(checkTelco($data, "Mobifone")){
+    include('header-mobifone.php');
+    $classTelco = 'h2-minmax-mb';
+    $classPrice = 'price-mb';
+    $_SESSION['catId'] = 10;
+}
+if(checkTelco($data, "Vinaphone")){
+    include('header-vinaphone.php');
+    $classTelco = 'h2-minmax-vnp';
+    $classPrice = 'price-vnp';
+    $_SESSION['catId'] = 7;
+}
+function checkTelco($data, $telco){
+    $flag = false;
+    foreach($data as $item){
+        if($item->name == $telco){
+            $flag = true;
+            break;
+        }
+    }
+    return $flag;
+}
+
+$arrPack = get_field('goi_cuoc_de_xuat');
+if($arrPack > 0){
+    $listRecommend = getListRecommend($arrPack);
+}else {
+    $args = array(
+        'post_type' => 'goi_cuoc_chi_tiet',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'nhom_goi_cuoc',
+                'field' => 'term_id',
+                'terms' => $data[0]->term_id
+            )
+        )
+    );
+    $query = new WP_Query( $args );
+    $arrPack = $query->posts;
+    $listRecommend = getListRecommend($arrPack);
+}
+function getListRecommend($data){
+    $recommends = [];
+    foreach($data as $item){
+        $id = is_array($item) ? $item['goi_cuoc'] : $item->ID;
+        $tem['pack_name'] = get_field('ma_goi_cuoc',$id);
+        $tem['speed'] = get_field('toc_do',$id);
+        $tem['price'] = get_field('gia_cuoc',$id);
+        $tem['syntax'] = get_field('cu_phap',$id);
+        $tem['charge_incurred'] = get_field('cuoc_phat_sinh',$id);
+        $tem['number_first'] = get_field('dau_so',$id);
+        $tem['register_type'] = get_field('register_type',$id);
+        $tem['cycle'] = get_field('chu_ky',$id);
+        $tem['description'] = get_field('mo_ta',$id);
+        $tem['detail'] = get_field('chi-tiet',$id);
+        $tem['id'] = $id;
+        array_push($recommends, $tem);
+    }
+    return $recommends;
+}
+?>
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/owlcarousel/assets/owl.carousel.min.css"/>
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/owlcarousel/assets/owl.theme.default.min.css"/>
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/package-detail.css"/>
+
+<script src="<?php echo get_template_directory_uri(); ?>/assets/vendors/jquery.min.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/assets/owlcarousel/owl.carousel.js"></script>
+<script src="../wp-content/themes/vinaphone/assets/js/register.js"></script>
+
+
+<div data-backdrop="false" class="modal fade bd-example-modal-lg" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal"
+     aria-hidden="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="text-align: center">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="desc">
+                    Quý khách vui lòng nhập số điện thoại để đăng ký gói cước: <span id="packageNamePopup"></span>
+                    (+<span id="data3gPopup"></span> lưu lượng)
+                    với giá
+                    <span id="packagePricePopup"></span> đồng, sử dụng trong <span id="packageUseTimePopup"></span>
+                </p>
+                <form id="formRegister" class="form-horizontal" method="post">
+                    <input type="hidden" name="partner[_csrf_token]" value="f80b5afa3e018016c93821c263d59ee6"
+                           id="partner__csrf_token">
+                    <div class="form-group">
+                        <div class="col-sm-10 text-left" style="width: 100%">
+                            <input id="txtPhone" class="form-control" placeholder="Số điện thoại" type="text"
+                                   name="partner[phone]" style="width: 100%">
+                            <div class="text-danger text-left"></div>
+                        </div>
+                    </div>
+                    <p id="phoneWarning" style="color: red;text-align: left"></p>
+                    <div class="form-group">
+                        <div class="col-sm-10 text-left">
+                            <input type="checkbox" name="partner[accept]" checked="checked" id="partner_accept">
+                            <label for="partner_accept" style="display: inline;">Tôi đồng ý với các nội dung gói cước và
+                                <a target="_blank" href="/tin-tuc/dieu-khoan/dieu-khoan-dich-vu/maivt_hni_web">Điều
+                                    khoản dịch vụ</a></label>
+                            <div class="text-danger"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button type="button" class="button mybutton button btn btn-success" onclick="checkPhone()">
+                                Xác nhận
+                            </button>
+                            <a class="button button-cancel mybutton btn btn-default" data-dismiss="modal">Hủy</a>
+                        </div>
+                    </div>
+                    <p id="packageWarning" style="color: red;text-align: center"></p>
+                </form>
+                <div id="allowPackage" class="container-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="col-md-8">
+        <div style="height: 20px;"></div>
+        <div class="">
+            <div class="col-xs-12" style="text-transform: uppercase;">
+                <?php if (function_exists('yoast_breadcrumb')) {
+                    yoast_breadcrumb('<p id="breadcrumbs" class="bread">', '</p>');
+                } ?>
+            </div>
+        </div>
+        <div style="height: 20px;" class="clear-fix"></div>
+        <div class="col-xs-12">
+            <p style="color: #0095f8;" class="font20 mb10">
+                <b>Gói <?php echo get_field('ma_goi_cuoc'); ?></b>
+            </p>
+        </div>
+        <div class="col-xs-12">
+            <table class="w100 table-goicuocd2 table table-bordered table-hover table-striped" border="1">
+                <?php if (get_field('toc_do') != '') : ?>
+                    <tr>
+                        <td>Dung lượng</td>
+                        <td><?php echo get_field('toc_do'); ?></td>
+                    </tr>
+                <?php endif; ?>
+                <tr>
+                    <td>Giá cước</td>
+                    <td><?php echo product_price(get_field('gia_cuoc')); ?> VNĐ</td>
+                </tr>
+                <tr>
+                    <td>Cú pháp</td>
+                    <td><b><?php echo get_field('cu_phap'); ?></b> gửi <b><?php echo get_field('dau_so'); ?></b></td>
+                </tr>
+                <tr>
+                    <td>Cước phát sinh</td>
+                    <td><?php echo get_field('cuoc_phat_sinh'); ?></td>
+                </tr>
+            </table>
+        </div>
+        <div class="clear-fix" style="height: 20px;"></div>
+        <div class="">
+            <?php render_btn_dangky(get_field('cu_phap', $value), get_field('dau_so', $value), get_field('register_type'), get_field('gia_cuoc'), get_field('chu_ky'), get_field('toc_do')); ?>
+        </div>
+<!--        <div style="height: 20px;"></div>-->
+        <div class="mo-ta" style="padding: 10px; text-align: justify;">
+            <?php echo get_field('mo_ta'); ?>
+        </div>
+<!--        <div style="height: 20px;"></div>-->
+        <div class="entry-content" style="text-align: justify;">
+            <?php echo get_field('chi-tiet'); ?>
+        </div>
+<!--        <div style="height: 100px;"></div>-->
+        <!--  Demos -->
+            <div class="box-data-cacgoi box-data lists slider">
+                <span class="recommend-title">Các gói liên quan</span>
+                <div class="owl-carousel owl-loaded owl-drag">
+                    <?php foreach($listRecommend as $item){?>
+                        <a href="<?php echo get_permalink($item['id']); ?>">
+                            <div class="items">
+                                <div class="inner-item">
+                                    <h2 class="<?php echo $classTelco ?>"><?php echo $item['pack_name']?></h2>
+                                    <div class="int <?php echo $classPrice?>">
+                                        <h3 ><?php echo $item['speed']?></h3>
+                                        <div class="price">
+                                            <?php echo product_price($item['price']) ?>đ/<?php echo $item['cycle']?>
+                                        </div>
+                                    </div>
+    <!--                                <div class="view">-->
+    <!--                                    --><?php //render_btn_dangky($item['syntax'], $item['number_first'], $item['register_type'], $item['price'], $item['cycle'], $item['speed']); ?>
+    <!--                                </div>-->
+                                </div>
+                            </div>
+                        </a>
+                    <?php }?>
+                </div>
+            </div>
+            <script>
+                $(document).ready(function() {
+                    var owl = $('.owl-carousel');
+                    owl.owlCarousel({
+                        margin: 10,
+                        nav: true,
+                        loop: true,
+                        autoplay: true,
+                        navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+                        responsive: {
+                            0: {
+                                items: 1
+                            },
+                            600: {
+                                items: 2
+                            },
+                            1000: {
+                                items: 3
+                            }
+                        }
+                    })
+                })
+            </script>
+    </div>
+    <div class="col-md-4">
+        <?php get_sidebar($catId); ?>
+    </div>
+</div>
+
+<?php
+//get_footer();
+if(checkTelco($data, "Viettel")){
+    get_footer('viettel');
+}
+if(checkTelco($data, "Mobifone")){
+    get_footer('mobifone');
+}
+if(checkTelco($data, "Vinaphone")){
+    get_footer('vinaphone');
+}
+?>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+

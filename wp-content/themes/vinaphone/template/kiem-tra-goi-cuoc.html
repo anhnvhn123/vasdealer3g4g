@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Kiểm tra gói cước</title>
+
+    <!-- Bootstrap -->
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+       body{
+            background: #f0f0f0;
+        }
+
+        h1 {
+            font-size: 21px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .table{
+            background: #f9f9f9;
+        }
+        .table thead tr td.name {
+            font-size: 16px;
+            padding: 10px 10px;
+            margin-top: 0px;
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 0px;
+            background-color: #00918D;
+        }
+
+        td,
+        th {
+            padding: 5px 10px;
+            border: 1px solid #cccccc;
+            border-bottom: 1px solid #CCCCCC;
+        }
+
+        .table-striped>tbody>tr:nth-of-type(odd) {
+            background-color: #f0f0f0;
+        }
+        .btn-dangky {
+    background-color: #ff9900;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    text-decoration: none !important;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #fff !important;
+            width: 100px;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Kiểm tra gói cước</h1>
+        <form class="form-horizontal" style="margin: 50px 0">
+            <div class="form-group">
+                <label for="phone" class="col-sm-2 control-label">Số điện thoại</label>
+                <div class="col-sm-5">
+                    <input class="form-control" id="phone">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="capcha" class="col-sm-2 control-label">Mã xác thực</label>
+                <div class="col-sm-3">
+                    <input class="form-control" id="capcha">
+                </div>
+                <div class="col-sm-2">
+                    <input class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-5">
+                    <a href="#" class="btn btn-info " type="submit">Kiểm tra gói cước</a>
+                </div>
+
+            </div>
+        </form>
+        <h5>Thuê bao của quý khách đủ điều kiện để đăng ký gói trong danh sách dưới đây. Quý khách vui lòng chọn gói cước để đăng ký</h5>
+        <div class="row" style="margin-top: 15px">
+            <div class="col-sm-6 text-left">
+                <table class="table table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <td class="name text-center" colspan="2">ST30K</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td width="30%">Giá cước</td>
+                            <td>30.000đ/7 ngày</td>
+                        </tr>
+                        <tr>
+                            <td>Nội dung gói cước</td>
+                            <td>Có ngay 7GB, gia han sau 7 ngay, luu luong con lai se duoc bao luu khi gia han thanh cong</td>
+                        </tr>
+                        <tr>
+                            <td>Giá khuyến mãi</td>
+                            <td>30.000đ</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center"> <a href="#" class="btn btn-sm btn-dangky">Đăng ký</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-sm-6 text-left">
+                <table class="table table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <td class="name text-center" colspan="2">ST30K</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td width="30%">Giá cước</td>
+                            <td>30.000đ/7 ngày</td>
+                        </tr>
+                        <tr>
+                            <td>Nội dung gói cước</td>
+                            <td>Có ngay 7GB, gia han sau 7 ngay, luu luong con lai se duoc bao luu khi gia han thanh cong</td>
+                        </tr>
+                        <tr>
+                            <td>Giá khuyến mãi</td>
+                            <td>30.000đ</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center"> <a href="#" class="btn btn-sm btn-dangky">Đăng ký</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-6 text-left">
+                <table class="table table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <td class="name text-center" colspan="2">ST30K</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td width="30%">Giá cước</td>
+                            <td>30.000đ/7 ngày</td>
+                        </tr>
+                        <tr>
+                            <td>Nội dung gói cước</td>
+                            <td>Có ngay 7GB, gia han sau 7 ngay, luu luong con lai se duoc bao luu khi gia han thanh cong</td>
+                        </tr>
+                        <tr>
+                            <td>Giá khuyến mãi</td>
+                            <td>30.000đ</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center"> <a href="#" class="btn btn-sm btn-dangky">Đăng ký</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-6 text-left">
+                <table class="table table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <td class="name text-center" colspan="2">ST30K</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td width="30%">Giá cước</td>
+                            <td>30.000đ/7 ngày</td>
+                        </tr>
+                        <tr>
+                            <td>Nội dung gói cước</td>
+                            <td>Có ngay 7GB, gia han sau 7 ngay, luu luong con lai se duoc bao luu khi gia han thanh cong</td>
+                        </tr>
+                        <tr>
+                            <td>Giá khuyến mãi</td>
+                            <td>30.000đ</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center"> <a href="#" class="btn btn-sm btn-dangky">Đăng ký</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-6 text-left">
+                <table class="table table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <td class="name text-center" colspan="2">ST30K</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td width="30%">Giá cước</td>
+                            <td>30.000đ/7 ngày</td>
+                        </tr>
+                        <tr>
+                            <td>Nội dung gói cước</td>
+                            <td>Có ngay 7GB, gia han sau 7 ngay, luu luong con lai se duoc bao luu khi gia han thanh cong</td>
+                        </tr>
+                        <tr>
+                            <td>Giá khuyến mãi</td>
+                            <td>30.000đ</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center"> <a href="#" class="btn btn-sm btn-dangky">Đăng ký</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
